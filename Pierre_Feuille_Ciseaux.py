@@ -35,9 +35,8 @@ def synchroniser():
 	#Attend que les millisecondes passent à 000 (début de la seconde suivante).
 	t_actuel = time.time()
 	# Calcule le temps restant jusqu'à la prochaine seconde entière
-	temps_attente = 1.0 - (t_actuel % 1.0)
+	temps_attente = 1.0 - (t_actuel % 1.0) #Le modulo (c'est le %) isole les milisecondes
 	time.sleep(temps_attente)
-
 
 victoire = 0
 égalité = 0
@@ -48,39 +47,39 @@ def pierre(s, frame):
 	global victoire, égalité, défaite, choix # Global permet d'utiliser des variables définies en dehors de la fonction
 	if choix == 0:
 		défaite += 1
-		print(f"Adversaire joue Pierre, je joue Ciseaux. Perdu\n {victoire} victoires  {égalité} égalités  {défaite} défaites")
+		print(f"Adversaire joue Pierre, je joue Ciseaux. Perdu\n {victoire} Victoires  {égalité} Egalités  {défaite} Défaites")
 	if choix == 1:
 		égalité +=1
 		print(f"Adversaire joue Pierre, je joue Pierre. Egalité\n {victoire} Victoires  {égalité} Egalités  {défaite} Défaites")
 	if choix == 2:
 		victoire +=1
-		print(f"Adversaire joue Pierre, je joue Feuille. Gagné\n {victoire} victoires  {égalité} égalités  {défaite} défaites")
+		print(f"Adversaire joue Pierre, je joue Feuille. Gagné\n {victoire} Victoires  {égalité} Egalités  {défaite} Défaites")
+
 
 def feuille(s, frame):
 	global victoire, égalité, défaite, choix # Global permet d'utiliser des variables définies en dehors de la fonction
 	if choix == 0:
 		victoire += 1
-		print(f"Adversaire joue Feuille, je joue Ciseaux. Gagné\n {victoire} victoires  {égalité} égalités  {défaite} défaites")
+		print(f"Adversaire joue Feuille, je joue Ciseaux. Gagné\n {victoire} Victoires  {égalité} Egalités  {défaite} Défaites")
 	if choix == 1:
 		défaite +=1
 		print(f"Adversaire joue Feuille, je joue Pierre. Perdu\n {victoire} Victoires  {égalité} Egalités  {défaite} Défaites")
 	if choix == 2:
 		égalité +=1
-		print(f"Adversaire joue Feuille, je joue Feuille. Egalité\n {victoire} victoires  {égalité} égalités  {défaite} défaites")
+		print(f"Adversaire joue Feuille, je joue Feuille. Egalité\n {victoire} Victoires  {égalité} Egalités  {défaite} Défaites")
 
 
 def ciseaux(s, frame):
 	global victoire, égalité, défaite, choix # Global permet d'utiliser des variables définies en dehors de la fonction
 	if choix == 0:
 		égalité += 1
-		print(f"Adversaire joue Ciseaux, je joue Ciseaux. Egalité\n {victoire} victoires  {égalité} égalités  {défaite} défaites")
+		print(f"Adversaire joue Ciseaux, je joue Ciseaux. Egalité\n {victoire} Victoires  {égalité} Egalités  {défaite} Défaites")
 	if choix == 1:
 		victoire +=1
 		print(f"Adversaire joue Ciseaux, je joue Pierre. Gagné\n {victoire} Victoires  {égalité} Egalités  {défaite} Défaites")
 	if choix == 2:
 		défaite +=1
-		print(f"Adversaire joue Ciseaux, je joue Feuille. Perdu\n {victoire} victoires  {égalité} égalités  {défaite} défaites")
-
+		print(f"Adversaire joue Ciseaux, je joue Feuille. Perdu\n {victoire} Victoires  {égalité} Egalités  {défaite} Défaites")
 
 
 sig.signal(sig.SIGUSR1, pierre) #Attend de recevoir un signal SIGUSR1, une fois recu on appelle la fonction pierre)
