@@ -14,21 +14,17 @@ print("Attente d'un Joueur...")
 pid_adversaire = None
 
 while not pid_adversaire:
-	# 1. On récupère TOUS les PIDs exécutant ce script via pgrep
-	resultat = subprocess.run(
-		["pgrep", "-f", os.path.basename(__file__)], 
-		capture_output=True, 
-		text=True
-	)
+	# Récupère les PIDs exécutant ce script via pgrep (Attention y'a un conflit avec plumz)
+	resultat = subprocess.run(["pgrep", "-f", os.path.basename(__file__)], capture_output=True, text=True)
 		
-	# 2. On transforme la chaîne reçue en liste de PIDs
+	# Transforme la chaîne reçue en liste de PIDs
 	tous_les_pids = resultat.stdout.split()
 		
-	# 3. On filtre pour ne garder que le PID qui n'est pas le nôtre
+	# Filtre pour ne garder que le PID qui n'est pas le nôtre
 	pids_adversaires = [p for p in tous_les_pids if int(p) != pid]
 
 	if pids_adversaires:
-		# On a trouvé l'autre joueur !
+		# On a trouvé l'autre joueur
 		pid_adversaire = int(pids_adversaires[0])
 	else:
 		# On est tout seul, on attend 1 seconde avant de revérifier
@@ -36,7 +32,7 @@ while not pid_adversaire:
 
 
 def synchroniser():
-	"""Attend que les millisecondes passent à 000 (début de la seconde suivante)."""
+	#Attend que les millisecondes passent à 000 (début de la seconde suivante).
 	t_actuel = time.time()
 	# Calcule le temps restant jusqu'à la prochaine seconde entière
 	temps_attente = 1.0 - (t_actuel % 1.0)
